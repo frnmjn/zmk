@@ -475,9 +475,9 @@ static int press_binding(struct active_hold_tap *hold_tap) {
             return press_hold_binding(hold_tap);
         }
     } else if (hold_tap->status == STATUS_RETRO_TAP) {
-        binding.behavior_dev = hold_tap->config->retro_tap_behavior;
-        binding.param1 = hold_tap->config->retro_tap_param1;
-        binding.param2 = hold_tap->config->retro_tap_param2;
+        hold_tap->config->hold_behavior_dev = hold_tap->config->retro_tap_behavior;
+        hold_tap->param_hold = hold_tap->config->retro_tap_param1;
+        hold_tap->param_tap = hold_tap->config->retro_tap_param2;
         store_last_hold_tapped(hold_tap);
     } else {
         if (hold_tap->config->hold_while_undecided &&
@@ -497,9 +497,9 @@ static int release_binding(struct active_hold_tap *hold_tap) {
     if (hold_tap->status == STATUS_HOLD_TIMER || hold_tap->status == STATUS_HOLD_INTERRUPT) {
         return release_hold_binding(hold_tap);
     } else if (hold_tap->status == STATUS_RETRO_TAP) {
-        binding.behavior_dev = hold_tap->config->retro_tap_behavior;
-        binding.param1 = hold_tap->config->retro_tap_param1;
-        binding.param2 = hold_tap->config->retro_tap_param2;
+        hold_tap->config->hold_behavior_dev = hold_tap->config->retro_tap_behavior;
+        hold_tap->param_hold = hold_tap->config->retro_tap_param1;
+        hold_tap->param_tap = hold_tap->config->retro_tap_param2;
     } else {
         return release_tap_binding(hold_tap);
     }
